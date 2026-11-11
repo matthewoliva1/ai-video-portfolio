@@ -2,40 +2,65 @@
   const projects = window.portfolioProjects || [];
   const featuredIds = window.featuredProjectIds || [];
   const projectById = new Map(projects.map((project) => [project.id, project]));
-  const featuredProjects = featuredIds.map((id) => projectById.get(id)).filter(Boolean);
+  const featuredProjects = featuredIds.map((id) => projectById.get(id)).filter(Boolean).slice(0, 3);
   const featuredGrid = document.getElementById("featured-grid");
   const workGrid = document.getElementById("work-grid");
   const filters = document.getElementById("filters");
+  const projectCount = document.getElementById("project-count");
   const videoModal = document.getElementById("video-modal");
   const aboutModal = document.getElementById("about-modal");
   const contactModal = document.getElementById("contact-modal");
   const nav = document.getElementById("site-nav");
   const navToggle = document.querySelector(".nav-toggle");
+  const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
+  const navSections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
 
-  function projectCard(project, featured) {
-    if (featured) {
-      return `<article class="project-card" tabindex="0" role="button" data-project-id="${project.id}" aria-label="Play ${project.title}">
-        <div class="project-card-media"><img src="${project.thumbnail}" alt="${project.alt}" loading="lazy"></div>
-        <span class="play-button" aria-hidden="true">▶</span>
-        <div class="project-card-content">
-          <div class="project-card-meta"><span>${project.category}</span> / ${project.subcategory}</div>
-          <h3>${project.title}</h3><p>${project.description}</p>
-        </div>
-      </article>`;
-    }
+  function setActiveNav(sectionId) {
+    navLinks.forEach((link) => {
+      const active = link.getAttribute("href") === `#${sectionId}`;
+      link.classList.toggle("active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  let pointerFrame = 0;
+  document.addEventListener("pointermove", (event) => {
+    if (pointerFrame) return;
+    pointerFrame = requestAnimationFrame(() => {
+      document.body.style.setProperty("--pointer-x", `${event.clientX}px`);
+      document.body.style.setProperty("--pointer-y", `${event.clientY}px`);
+      pointerFrame = 0;
+    });
+  }, { passive: true });
+
+  function featuredCard(project) {
+    return `<article class="featured-card" tabindex="0" role="button" data-project-id="${project.id}" aria-label="Play ${project.title}">
+      <img src="${project.thumbnail}" alt="${project.alt}" loading="lazy">
+      <span class="featured-card-play" aria-hidden="true">▶</span>
+      <div class="featured-card-content">
+        <small>${project.category} / ${project.subcategory}</small>
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+      </div>
+    </article>`;
+  }
+
+  function workCard(project) {
     return `<button class="work-card" type="button" data-project-id="${project.id}" aria-label="Play ${project.title}">
       <div class="work-card-media"><img src="${project.thumbnail}" alt="${project.alt}" loading="lazy"></div>
-      <div class="work-card-copy"><p>${project.category}</p><h3>${project.title}</h3></div>
+      <div class="work-card-copy"><p>${project.category} / ${project.subcategory}</p><h3>${project.title}</h3></div>
     </button>`;
   }
 
   function renderFeatured() {
-    featuredGrid.innerHTML = featuredProjects.map((project) => projectCard(project, true)).join("");
+    featuredGrid.innerHTML = featuredProjects.map(featuredCard).join("");
   }
 
   function renderWork(category) {
     const visible = category === "All" ? projects : projects.filter((project) => project.category === category);
-    workGrid.innerHTML = visible.map((project) => projectCard(project, false)).join("");
+    workGrid.innerHTML = visible.map(workCard).join("");
+    projectCount.textContent = `${String(visible.length).padStart(2, "0")} project${visible.length === 1 ? "" : "s"}`;
   }
 
   function renderFilters() {
@@ -65,10 +90,12 @@
   renderFeatured();
   renderFilters();
   renderWork("All");
+  document.getElementById("hero-project-count").textContent = String(projects.length).padStart(2, "0");
 
   document.addEventListener("click", (event) => {
     const projectElement = event.target.closest("[data-project-id]");
     if (projectElement) openVideo(projectElement.dataset.projectId);
+
     const filterButton = event.target.closest("[data-filter]");
     if (filterButton) {
       document.querySelectorAll("[data-filter]").forEach((button) => {
@@ -78,6 +105,7 @@
       });
       renderWork(filterButton.dataset.filter);
     }
+
     if (event.target.closest("[data-open-about]")) {
       aboutModal.showModal();
       document.body.classList.add("modal-open");
@@ -88,13 +116,15 @@
     }
     if (event.target.closest("[data-close-modal]")) closeModal(event.target.closest("dialog"));
     if (event.target.closest("#site-nav a")) {
+      const link = event.target.closest("#site-nav a");
+      setActiveNav(link.getAttribute("href").slice(1));
       nav.classList.remove("open");
       navToggle.setAttribute("aria-expanded", "false");
     }
   });
 
   document.addEventListener("keydown", (event) => {
-    const card = event.target.closest(".project-card");
+    const card = event.target.closest(".featured-card");
     if (card && (event.key === "Enter" || event.key === " ")) {
       event.preventDefault();
       openVideo(card.dataset.projectId);
@@ -116,6 +146,38 @@
     navToggle.setAttribute("aria-expanded", String(open));
   });
 
+  let navFrame = 0;
+  function syncActiveNav() {
+    const marker = window.scrollY + window.innerHeight * .34;
+    let currentSection = "";
+    navSections.forEach((section) => {
+      if (section.offsetTop <= marker) currentSection = section.id;
+    });
+    setActiveNav(currentSection);
+  }
+  window.addEventListener("scroll", () => {
+    if (navFrame) return;
+    navFrame = requestAnimationFrame(() => {
+      syncActiveNav();
+      navFrame = 0;
+    });
+  }, { passive: true });
+  window.addEventListener("resize", syncActiveNav);
+  requestAnimationFrame(syncActiveNav);
+
+  const observer = "IntersectionObserver" in window ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 }) : null;
+
+  document.querySelectorAll(".reveal").forEach((element) => {
+    if (observer) observer.observe(element);
+    else element.classList.add("in-view");
+  });
+
   document.getElementById("form-next").value = new URL("thank-you.html", window.location.href).href;
-  document.getElementById("year").textContent = new Date().getFullYear();
 })();
