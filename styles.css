@@ -143,17 +143,20 @@ button.stage-card { padding: 0; color: inherit; cursor: pointer; }
 .work-card-copy p { margin-bottom: 5px; color: var(--sky); font-size: .58rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
 .work-card-copy h3 { margin: 0; font-size: 1rem; line-height: 1.2; }
 
-.specializations { padding: clamp(90px, 11vw, 150px) max(28px, calc((100vw - var(--max)) / 2 + 28px)); background: var(--paper); color: var(--ink); }
-.specializations .section-label { color: var(--coral); }
-.specializations .section-summary { color: #5e6470; }
-.specialization-list { border-top: 1px solid var(--dark-line); }
-.specialization-list article { display: grid; grid-template-columns: 70px 1fr 48px; gap: 28px; align-items: center; min-height: 148px; border-bottom: 1px solid var(--dark-line); transition: padding .25s ease, background .25s ease; }
-.specialization-list article:hover { padding-inline: 20px; background: var(--coral); }
-.specialization-list article > span { font-size: .7rem; font-weight: 900; }
-.specialization-list h3 { margin: 0 0 7px; font-size: clamp(1.4rem, 3vw, 2.7rem); letter-spacing: -.04em; }
-.specialization-list p { max-width: 680px; margin: 0; color: #5e6470; }
-.specialization-list article:hover p { color: rgba(10,16,33,.74); }
-.specialization-list b { font-size: 1.6rem; font-weight: 400; }
+.specializations { position: relative; overflow: hidden; padding: clamp(90px, 11vw, 150px) max(28px, calc((100vw - var(--max)) / 2 + 28px)); border-block: 1px solid var(--line); background-color: #080d20; background-image: radial-gradient(circle at 83% 20%, rgba(143,166,255,.22), transparent 34%), linear-gradient(rgba(143,166,255,.075) 1px, transparent 1px), linear-gradient(90deg, rgba(143,166,255,.075) 1px, transparent 1px); background-size: auto, 72px 72px, 72px 72px; color: var(--paper); isolation: isolate; }
+.specializations::before { content: ""; position: absolute; z-index: -1; width: 620px; height: 620px; right: -170px; bottom: -330px; border-radius: 50%; background: radial-gradient(circle, rgba(114,214,208,.15), transparent 66%); pointer-events: none; }
+.specializations .section-header, .specialization-list { position: relative; z-index: 1; }
+.specializations .section-label { color: var(--sky); }
+.specializations .section-header h2 em { color: var(--coral); }
+.specializations .section-summary { color: #b8c1d4; }
+.specialization-list { border-top: 1px solid var(--line); }
+.specialization-list article { display: grid; grid-template-columns: 70px 1fr 48px; gap: 28px; align-items: center; min-height: 148px; padding-inline: 0; border-bottom: 1px solid var(--line); background: rgba(7,11,27,.18); transition: padding .25s ease, background .25s ease, box-shadow .25s ease; }
+.specialization-list article:hover { padding-inline: 20px; background: linear-gradient(90deg, rgba(143,166,255,.17), rgba(114,214,208,.07)); box-shadow: inset 3px 0 0 var(--coral); }
+.specialization-list article > span { color: var(--coral); font-size: .7rem; font-weight: 900; }
+.specialization-list h3 { margin: 0 0 7px; color: var(--paper); font-size: clamp(1.4rem, 3vw, 2.7rem); letter-spacing: -.04em; }
+.specialization-list p { max-width: 680px; margin: 0; color: var(--muted); }
+.specialization-list article:hover p { color: var(--paper-2); }
+.specialization-list b { color: var(--sky); font-size: 1.6rem; font-weight: 400; }
 
 .tool-stack { position: relative; border-inline: 1px solid var(--line); background-image: linear-gradient(rgba(143,166,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(143,166,255,.045) 1px, transparent 1px); background-size: 54px 54px; }
 .tool-stack::before { content: "+"; position: absolute; right: 28px; top: 28px; color: var(--sky); font-weight: 900; }
