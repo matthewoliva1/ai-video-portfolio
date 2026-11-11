@@ -19,7 +19,7 @@ The contact form uses FormSubmit. The first real submission sends a one-time act
 
 ## Adding another video
 
-Add the thumbnail under `assets/thumbnails/`, then add one project object to `portfolio-data.js`. To feature it, add its project ID to `featured-data.js`. The design, contact details, filters, and playback behavior do not need to be rebuilt.
+Add the thumbnail under `assets/thumbnails/`, then add one project object to `portfolio-data.js`. The project will automatically appear in the complete work archive and its category filter. The design, contact details, and playback behavior do not need to be rebuilt.
 
 ## Portfolio source
 

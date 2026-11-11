@@ -1,14 +1,10 @@
 (function () {
   const projects = window.portfolioProjects || [];
-  const featuredIds = window.featuredProjectIds || [];
   const projectById = new Map(projects.map((project) => [project.id, project]));
-  const featuredProjects = featuredIds.map((id) => projectById.get(id)).filter(Boolean).slice(0, 3);
-  const featuredGrid = document.getElementById("featured-grid");
   const workGrid = document.getElementById("work-grid");
   const filters = document.getElementById("filters");
   const projectCount = document.getElementById("project-count");
   const videoModal = document.getElementById("video-modal");
-  const aboutModal = document.getElementById("about-modal");
   const contactModal = document.getElementById("contact-modal");
   const nav = document.getElementById("site-nav");
   const navToggle = document.querySelector(".nav-toggle");
@@ -34,27 +30,11 @@
     });
   }, { passive: true });
 
-  function featuredCard(project) {
-    return `<article class="featured-card" tabindex="0" role="button" data-project-id="${project.id}" aria-label="Play ${project.title}">
-      <img src="${project.thumbnail}" alt="${project.alt}" loading="lazy">
-      <span class="featured-card-play" aria-hidden="true">▶</span>
-      <div class="featured-card-content">
-        <small>${project.category} / ${project.subcategory}</small>
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-      </div>
-    </article>`;
-  }
-
   function workCard(project) {
     return `<button class="work-card" type="button" data-project-id="${project.id}" aria-label="Play ${project.title}">
       <div class="work-card-media"><img src="${project.thumbnail}" alt="${project.alt}" loading="lazy"></div>
       <div class="work-card-copy"><p>${project.category} / ${project.subcategory}</p><h3>${project.title}</h3></div>
     </button>`;
-  }
-
-  function renderFeatured() {
-    featuredGrid.innerHTML = featuredProjects.map(featuredCard).join("");
   }
 
   function renderWork(category) {
@@ -87,7 +67,6 @@
     if (!document.querySelector("dialog[open]")) document.body.classList.remove("modal-open");
   }
 
-  renderFeatured();
   renderFilters();
   renderWork("All");
   document.getElementById("hero-project-count").textContent = String(projects.length).padStart(2, "0");
@@ -106,10 +85,6 @@
       renderWork(filterButton.dataset.filter);
     }
 
-    if (event.target.closest("[data-open-about]")) {
-      aboutModal.showModal();
-      document.body.classList.add("modal-open");
-    }
     if (event.target.closest("[data-open-contact]")) {
       contactModal.showModal();
       document.body.classList.add("modal-open");
@@ -120,14 +95,6 @@
       setActiveNav(link.getAttribute("href").slice(1));
       nav.classList.remove("open");
       navToggle.setAttribute("aria-expanded", "false");
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    const card = event.target.closest(".featured-card");
-    if (card && (event.key === "Enter" || event.key === " ")) {
-      event.preventDefault();
-      openVideo(card.dataset.projectId);
     }
   });
 
