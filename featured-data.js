@@ -1,6 +1,6 @@
 window.featuredProjectIds = [
   "eloix-tallow",
   "acne-ugc",
-  "pixar-style",
+  "pheromiya-3d",
   "vsl-edit"
 ];
