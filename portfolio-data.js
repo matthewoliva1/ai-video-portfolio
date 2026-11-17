@@ -1,15 +1,63 @@
 window.portfolioProjects = [
   {
-    id: "pixar-style",
-    title: "3D Pixar-Style Animation",
-    originalName: "3D PIXAR STYLE .mp4",
+    id: "pheromiya-pj2",
+    title: "Pheromiya 3D Creative — PJ2",
+    originalName: "Pheromiya PJ2.mp4",
     category: "Animation",
-    subcategory: "Stylized 3D",
+    subcategory: "Product Story",
     source: "Google Drive",
-    fileId: "1tB39KUFSaZHAXYE6c2oXPmu5-AkpFobM",
-    thumbnail: "assets/thumbnails/3d-pixar-style.jpg",
-    alt: "Stylized 3D animated character holding a cup",
-    description: "Character-led stylized animation with a polished, cinematic finish."
+    fileId: "1CYTHRlUdt1jT-MigfauVeOIFJc1-Tvcg",
+    thumbnail: "assets/thumbnails/pheromiya-pj2.jpg",
+    alt: "Romantic 3D animated frame from Pheromiya PJ2",
+    description: "A cinematic Pheromiya chapter shaped through expressive characters, warm visual direction, and a polished 3D finish."
+  },
+  {
+    id: "pheromiya-pj3",
+    title: "Pheromiya 3D Creative — PJ3",
+    originalName: "PHEROMIYA PJ 3 BATCH 51.mp4",
+    category: "Animation",
+    subcategory: "Product Story",
+    source: "Google Drive",
+    fileId: "1S5sn4l0zPxSajukT6aDQ2mDN8doiZ4Yp",
+    thumbnail: "assets/thumbnails/pheromiya-pj3-batch51.jpg",
+    alt: "Stylized animated character from Pheromiya PJ3",
+    description: "A new Pheromiya story with cinematic 3D staging, consistent characters, and an emotionally driven visual world."
+  },
+  {
+    id: "pheromiya-batch47",
+    title: "Pheromiya 3D Creative — Batch 47",
+    originalName: "Phero pj btach 47 .mp4",
+    category: "Animation",
+    subcategory: "Campaign Variation",
+    source: "Google Drive",
+    fileId: "1Vf0iQodrw0tOMt6yFCJ0pj4NDBpnwg4H",
+    thumbnail: "assets/thumbnails/pheromiya-batch47.jpg",
+    alt: "Warm cinematic frame from Pheromiya Batch 47",
+    description: "A fresh campaign variation built around expressive motion, relationship-led storytelling, and a refined stylized finish."
+  },
+  {
+    id: "pheromiya-drama-pj3",
+    title: "Pheromiya AI Drama — PJ3",
+    originalName: "Pheromiya drama PJ3 .mp4",
+    category: "AI Drama",
+    subcategory: "Branded Narrative",
+    source: "Google Drive",
+    fileId: "1k65vM_Tep17tGmvyGtZapaAPeNOZ1hyy",
+    thumbnail: "assets/thumbnails/pheromiya-drama-pj3.jpg",
+    alt: "Cinematic bridal frame from Pheromiya AI Drama PJ3",
+    description: "A branded AI drama combining elegant character direction, cinematic framing, and emotionally paced storytelling."
+  },
+  {
+    id: "creatine-checklist-ugc",
+    title: "Creatine Checklist AI UGC",
+    originalName: "Do All Three Plus Creatine — escalating checklist device — Clone AI-UGC Woman.4",
+    category: "AI UGC",
+    subcategory: "Performance Creative",
+    source: "Google Drive",
+    fileId: "1HGqf_COUgdG83WpVzMzcm1DxTG_9IO2q",
+    thumbnail: "assets/thumbnails/creatine-checklist-ugc.jpg",
+    alt: "AI UGC fitness creator presenting a creatine checklist",
+    description: "A performance-focused creator ad built around an escalating checklist hook and a clear creatine product payoff."
   },
   {
     id: "creatine-ugc",
