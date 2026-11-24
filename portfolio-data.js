@@ -1,5 +1,53 @@
 window.portfolioProjects = [
   {
+    id: "pheromiya-drama-batch75",
+    title: "Pheromiya AI Drama — Batch 75",
+    originalName: "ZEL_BATCH 75.mp4",
+    category: "AI Drama",
+    subcategory: "Branded Narrative",
+    source: "Google Drive",
+    fileId: "13al9kyoR9rUFqCsSeAjkKZncUD4Gaw2O",
+    thumbnail: "https://lh3.googleusercontent.com/d/13al9kyoR9rUFqCsSeAjkKZncUD4Gaw2O=w1080",
+    alt: "Close-up of a woman in a dim, warm-lit scene from a Pheromiya AI drama",
+    description: "A photoreal branded AI drama built on close, emotional character moments and cinematic low-light framing."
+  },
+  {
+    id: "lymphoria-ai-drama",
+    title: "Lymphoria AI Drama",
+    originalName: "AI DRAMA LYMPHORIA.mp4",
+    category: "AI Drama",
+    subcategory: "Branded Narrative",
+    source: "Google Drive",
+    fileId: "1qozZn5-HaukQg8q6pk1RznFqWEbEzVad",
+    thumbnail: "https://lh3.googleusercontent.com/d/1qozZn5-HaukQg8q6pk1RznFqWEbEzVad=w1080",
+    alt: "Two women in an elevator from the Lymphoria AI drama",
+    description: "A realistic AI drama for Lymphoria, told through everyday characters, natural reactions, and story-led pacing."
+  },
+  {
+    id: "lymphoria-pixar",
+    title: "Lymphoria Pixar-Style 3D Ad",
+    originalName: "Pixar Lymphoria.mp4",
+    category: "Animation",
+    subcategory: "Product Story",
+    source: "Google Drive",
+    fileId: "1Mm8QoXdTVfACjaSCeHpJI1czQJdJQvVS",
+    thumbnail: "https://lh3.googleusercontent.com/d/1Mm8QoXdTVfACjaSCeHpJI1czQJdJQvVS=w1080",
+    alt: "Pixar-style 3D character with a glowing body visualization sitting by a bed",
+    description: "A Pixar-style 3D product story for Lymphoria, using a glowing body visual to make the problem easy to see."
+  },
+  {
+    id: "pheromiya-batch1",
+    title: "Pheromiya 3D Creative — Batch 1",
+    originalName: "pheromiya-batch1_final_captions_v3.mp4",
+    category: "Animation",
+    subcategory: "Product Story",
+    source: "Google Drive",
+    fileId: "19WoWbkoF_YgWUJBC9a4_jR1rEr5emPLL",
+    thumbnail: "https://lh3.googleusercontent.com/d/19WoWbkoF_YgWUJBC9a4_jR1rEr5emPLL=w1080",
+    alt: "Pixar-style 3D couple sharing a kiss in warm golden light",
+    description: "A romantic Pixar-style 3D story for Pheromiya, with warm golden lighting and captioned, music-led pacing."
+  },
+  {
     id: "pheromiya-pj2",
     title: "Pheromiya 3D Creative — PJ2",
     originalName: "Pheromiya PJ2.mp4",
